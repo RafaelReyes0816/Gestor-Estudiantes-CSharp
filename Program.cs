@@ -10,6 +10,7 @@ void MostrarTitulo(string titulo)
 
 while (true)
 {
+    Console.Clear();
     // Menú principal de opciones
     MostrarTitulo("MENÚ PRINCIPAL");
     Console.WriteLine("1. Agregar estudiante");
@@ -97,7 +98,6 @@ while (true)
         case "3":
             Console.Clear();
             MostrarTitulo("BUSCAR ESTUDIANTE");
-            // Si no hay estudiantes, vuelve al menú
             if (escuela.EstaVacia())
             {
                 Console.WriteLine("No hay estudiantes registrados para buscar.");
@@ -110,9 +110,16 @@ while (true)
             var nombreBuscar = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(nombreBuscar))
             {
-                escuela.BuscarEstudiante(nombreBuscar);
+                bool encontrado = escuela.BuscarEstudiante(nombreBuscar);
                 Console.WriteLine("----------------------------------------");
-                Console.WriteLine("Búsqueda finalizada.");
+                if (!encontrado)
+                {
+                    Console.WriteLine($"No se encontró ningún estudiante con el nombre \"{nombreBuscar}\".");
+                }
+                else
+                {
+                    Console.WriteLine("Búsqueda finalizada.");
+                }
             }
             else
             {

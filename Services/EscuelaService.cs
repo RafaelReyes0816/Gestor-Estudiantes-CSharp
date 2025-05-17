@@ -1,10 +1,8 @@
-// Implementación de los servicios de la escuela
+// Implementa la gestión de estudiantes
 public class EscuelaService : IEscuelaService
 {
-    // Lista interna de estudiantes
     private List<Estudiante> _estudiantes = new List<Estudiante>();
 
-    // Agrega un estudiante a la lista
     public void AgregarEstudiante(Estudiante estudiante)
     {
         if (estudiante == null)
@@ -15,7 +13,6 @@ public class EscuelaService : IEscuelaService
         _estudiantes.Add(estudiante);
     }
 
-    // Muestra todos los estudiantes registrados
     public void MostrarEstudiantes()
     {
         if (_estudiantes.Count == 0)
@@ -27,29 +24,18 @@ public class EscuelaService : IEscuelaService
             Console.WriteLine(estudiante.ObtenerInfo());
     }
 
-    // Busca estudiantes cuyo nombre contenga el texto dado (ignora mayúsculas/minúsculas)
-    public void BuscarEstudiante(string nombre)
+    public bool BuscarEstudiante(string nombre)
     {
-        if (string.IsNullOrWhiteSpace(nombre))
+        var encontrados = _estudiantes.Where(e => e.Nombre.Contains(nombre, StringComparison.OrdinalIgnoreCase)).ToList();
+        if (encontrados.Count == 0)
+            return false;
+        foreach (var e in encontrados)
         {
-            Console.WriteLine("Debe ingresar un nombre válido para buscar.");
-            return;
+            Console.WriteLine($"Nombre: {e.Nombre}, Edad: {e.Edad}, Calificaciones: {string.Join(", ", e.Calificaciones)}");
         }
-        BuscarEstudiante(nombre, 0);
+        return true;
     }
 
-    // Método recursivo interno para buscar estudiantes por nombre
-    private void BuscarEstudiante(string nombre, int index)
-    {
-        if (index >= _estudiantes.Count) return;
-
-        if (_estudiantes[index].Nombre.Contains(nombre, StringComparison.OrdinalIgnoreCase))
-            Console.WriteLine(_estudiantes[index].ObtenerInfo());
-
-        BuscarEstudiante(nombre, index + 1);
-    }
-
-    // Borra todos los estudiantes cuyo nombre coincida exactamente (ignora mayúsculas/minúsculas)
     public bool BorrarEstudiante(string nombre)
     {
         var encontrados = _estudiantes
@@ -65,6 +51,5 @@ public class EscuelaService : IEscuelaService
         return true;
     }
 
-    // Indica si la lista de estudiantes está vacía
     public bool EstaVacia() => _estudiantes.Count == 0;
 }
