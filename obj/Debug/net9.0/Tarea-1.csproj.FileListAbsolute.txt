@@ -12,3 +12,4 @@
 /home/rafaelreyes/Documentos/Tareas/Tarea-1/obj/Debug/net9.0/Tarea-1.pdb
 /home/rafaelreyes/Documentos/Tareas/Tarea-1/obj/Debug/net9.0/Tarea-1.genruntimeconfig.cache
 /home/rafaelreyes/Documentos/Tareas/Tarea-1/obj/Debug/net9.0/ref/Tarea-1.dll
+/home/rafaelreyes/Documentos/Tareas/Tarea-1/obj/Debug/net9.0/Tarea-1.sourcelink.json
