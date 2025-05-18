@@ -10,8 +10,8 @@ void MostrarTitulo(string titulo)
 
 while (true)
 {
-    Console.Clear();
     // Menú principal de opciones
+    Console.Clear();
     MostrarTitulo("MENÚ PRINCIPAL");
     Console.WriteLine("1. Agregar estudiante");
     Console.WriteLine("2. Mostrar estudiantes");
@@ -26,6 +26,7 @@ while (true)
             Console.Clear();
             MostrarTitulo("AGREGAR ESTUDIANTE");
             string nombre;
+
             // Solicita y valida el nombre
             do
             {
@@ -35,8 +36,8 @@ while (true)
                     Console.WriteLine("El nombre no puede estar vacío.");
             } while (string.IsNullOrWhiteSpace(nombre));
 
-            int edad;
             // Solicita y valida la edad
+            int edad;
             do
             {
                 Console.Write("Edad: ");
@@ -48,8 +49,8 @@ while (true)
                 }
             } while (edad < 0);
 
-            double[] calificaciones;
             // Solicita y valida las calificaciones (mínimo 2, máximo 6)
+            double[] calificaciones;
             while (true)
             {
                 Console.Write("Calificaciones (mínimo 2, máximo 6, separadas por coma, ej: 90,80,75): ");
@@ -132,6 +133,7 @@ while (true)
         case "4":
             Console.Clear();
             MostrarTitulo("BORRAR ESTUDIANTE");
+
             // Si no hay estudiantes, vuelve al menú
             if (escuela.EstaVacia())
             {
@@ -144,6 +146,7 @@ while (true)
             Console.WriteLine("Estudiantes registrados:");
             escuela.MostrarEstudiantes();
             Console.WriteLine("----------------------------------------");
+            
             // Pide el nombre completo para borrar
             Console.Write("Escriba el nombre completo del estudiante a borrar: ");
             var nombreBorrar = Console.ReadLine();
